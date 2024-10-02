@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from pathlib import Path
 import plotly.express as px
+from constants import Color
 
 
 def read_data():
@@ -15,14 +16,14 @@ def layout():
     df = read_data()
     df_reset = df.reset_index(names=["year"]).style.format({"year": lambda x: f"{x}"})
 
-    st.write("# YH Dashboard")
+    st.title("YH Dashboard")
 
-    st.header("This table shows educations started per region per year")
+    st.write("This table shows educations started per region per year")
 
-    st.markdown("## Raw data")
+    st.header("Raw data")
     st.dataframe(df_reset)
 
-    st.header("## Trends per region")
+    st.header("Trends per region")
     region = st.selectbox("Choose a region", df.columns)
 
     region_stats = df[region].describe()
@@ -44,8 +45,13 @@ def layout():
         labels={"index": "year", region: "started educations"},
     )
 
-    fig.update_traces(line=dict(width=3))
-    fig.update_layout(xaxis=dict(showgrid=False), yaxis=dict(showgrid=False))
+    fig.update_traces(line=dict(width=4, color=Color.PRIMARY))
+    fig.update_layout(
+        xaxis=dict(showgrid=False),
+        yaxis=dict(showgrid=False),
+        paper_bgcolor=Color.BACKGROUND,
+        plot_bgcolor=Color.BACKGROUND,
+    )
 
     st.plotly_chart(fig)
 
