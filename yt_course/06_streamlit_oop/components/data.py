@@ -36,3 +36,30 @@ class MedalsPerCountry:
         return (
             self.df_summer_medals.groupby(["NOC", "Medal"]).size().unstack(fill_value=0)
         )
+        
+class SwedishSummerMedals:
+    def __init__(self) -> None:
+        self.df_swe = MedalsSummer().data.query("NOC == 'SWE'")
+
+    @property
+    def per_athlete(self):
+        return self.df_swe.groupby("Name")["Medal"].count().sort_values(ascending=False)
+
+    @property
+    def per_sport(self):
+        return (
+            self.df_swe.groupby("Sport")["Medal"].count().sort_values(ascending=False)
+        )
+
+class Countries:
+    def __init__(self):
+        self._df = SummerGames().df
+
+    @property
+    def noc(self):
+        return self._df["NOC"].unique()
+
+    @property
+    def country_dict(self):
+        """dictionary of NOC: country"""
+        # TODO: implement
