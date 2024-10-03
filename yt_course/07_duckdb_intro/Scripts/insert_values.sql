@@ -24,4 +24,34 @@ VALUES
 6);
 
 
-SELECT 
+SELECT * FROM jokes;
+
+
+SELECT * FROM jokes WHERE rating > 6;
+
+DESC jokes;
+
+
+INSERT
+	INTO
+	jokes (id,
+	joke_text,
+	rating)
+VALUES (5,
+'Why some couples dont go to the gym? Because some relationships dont workout.',
+8),
+(6,
+'I would avoid the sushi if I was was you. Its a little fishy.',
+7),
+(7,
+'Why dont programmers like nature? It has too many bugs',
+9),
+(8, 'Wanna hear a joke about construction? Im still working on it', 6),
+(9,
+'How does a penguin build its house? Igloos it together.',
+1),
+(10,
+'A gothenburg person stands in queue for star wars when someone cuts the line he says ge daj.',
+2);
+
+SELECT * FROM jokes;
