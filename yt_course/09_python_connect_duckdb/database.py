@@ -1,7 +1,5 @@
 import duckdb
-from pathlib import Path
-
-db_path = Path(__file__).parent/"test.db"
+from constants import DATABASE_PATH
 
 class Database:
     
@@ -22,7 +20,7 @@ class Database:
     
 
 if __name__ == '__main__':
-    with Database(db_path) as db:
-        query1 = db.query("SELECT * FROM information_schema.schemata;")
+    with Database(DATABASE_PATH) as db:
+        query1 = db.query(f"SELECT * FROM information_schema.schemata;")
         
     print(query1)
